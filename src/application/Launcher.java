@@ -29,17 +29,13 @@ public class Launcher
 		ui.getRootPanel().grabFocus();
 		field = (Field) ui.playground;
 
-		Cell cell = new Cell(5,5);
-		this.field.addCell(cell);
+		Polyomino poly =new Polyomino();
+		poly.cells.add(new Cell(5,5));
+		poly.cells.add(new Cell(10,5));
+		poly.cells.add(new Cell(7,9));
+		poly.cells.add(new Cell(0,0));
 
-		cell = new Cell(10,5);
-		this.field.addCell(cell);
-
-		cell = new Cell(7,9);
-		this.field.addCell(cell);
-
-		cell = new Cell(0,0);
-		this.field.addCell(cell);
+		field.addPolyomino(poly);
 	}
 
 	Field field;
