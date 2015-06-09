@@ -25,6 +25,8 @@ public class Launcher
 		frame.setVisible(true);
 		frame.setSize(800, 600);
 
+		ui.getRootPanel().addKeyListener(new Keys());
+		ui.getRootPanel().grabFocus();
 		field = (Field) ui.playground;
 
 		Cell cell = new Cell(5,5);
@@ -38,7 +40,6 @@ public class Launcher
 
 		cell = new Cell(0,0);
 		this.field.addCell(cell);
-
 	}
 
 	Field field;

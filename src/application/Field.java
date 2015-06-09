@@ -14,6 +14,12 @@ import javax.swing.*;
 
 public class Field extends JPanel
 {
+	public void addPolyomino(Polyomino polyomino)
+	{
+		this.cells.addAll(polyomino.cells);
+	}
+
+
 	public void addCell(Cell cell)
 	{
 		this.cells.add(cell);

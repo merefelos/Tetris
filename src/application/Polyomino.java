@@ -11,5 +11,5 @@ import java.util.List;
 
 public class Polyomino
 {
-	List<Cell> cells = new ArrayList<Cell>();
+	public List<Cell> cells = new ArrayList<Cell>();
 }
