@@ -1,3 +1,7 @@
+import events.EventControlPanel;
+import events.sample.HelloWorldEvent;
+import events.sample.Sample;
+import ui.Cell;
 import ui.MainUI;
 
 import javax.swing.*;
@@ -23,5 +27,8 @@ public class Launcher
 		frame.setContentPane(ui.getRootPanel());
 		frame.setVisible(true);
 		frame.setSize(800, 600);
+
+		Cell cell = new Cell();
+		ui.playground.add(cell.main);
 	}
 }
