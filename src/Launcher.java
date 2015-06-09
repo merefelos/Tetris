@@ -2,6 +2,7 @@ import events.EventControlPanel;
 import events.sample.HelloWorldEvent;
 import events.sample.Sample;
 import ui.Cell;
+import ui.Field;
 import ui.MainUI;
 
 import javax.swing.*;
@@ -28,7 +29,21 @@ public class Launcher
 		frame.setVisible(true);
 		frame.setSize(800, 600);
 
-		Cell cell = new Cell();
-		ui.playground.add(cell.main);
+		field = (Field) ui.playground;
+
+		Cell cell = new Cell(5,5);
+		this.field.addCell(cell);
+
+		cell = new Cell(10,5);
+		this.field.addCell(cell);
+
+		cell = new Cell(7,9);
+		this.field.addCell(cell);
+
+		cell = new Cell(0,0);
+		this.field.addCell(cell);
+
 	}
+
+	Field field;
 }

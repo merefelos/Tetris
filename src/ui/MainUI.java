@@ -16,4 +16,12 @@ public class MainUI
 	}
 
 	private JPanel rootPanel;
+
+	public JPanel playground;
+
+
+	private void createUIComponents()
+	{
+		this.playground = new Field();
+	}
 }

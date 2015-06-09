@@ -17,37 +17,28 @@ import java.awt.Graphics;
 import javax.swing.*;
 
 
-public class Cell
+public class Cell extends JPanel
 {
-	public JPanel main;
-
-
-	private void createUIComponents()
+	public Cell(int x, int y)
 	{
-		this.main = new Panel();
+		Dimension dimension = new Dimension(30, 30);
+		this.setPreferredSize(dimension);
+		this.setMinimumSize(dimension);
+		this.setMaximumSize(dimension);
+		this.setOpaque(false);
+
+		this.x = x;
+		this.y = y;
 	}
 
-	private class Panel extends JPanel
+
+	@Override
+	public void paintComponent(Graphics g)
 	{
-		public Panel()
-		{
-			Dimension dimension = new Dimension(30, 30);
-			this.setPreferredSize(dimension);
-			this.setMinimumSize(dimension);
-			this.setMaximumSize(dimension);
-			this.setOpaque(false);
+		super.paintComponent(g);
+    		g.setColor(Color.GREEN);
+			g.drawRect((30*x) + 1, (30*y) + 1,28,28);
 		}
-
-
-		@Override
-		protected void paintComponent(Graphics g)
-		{
-			super.paintComponent(g);
-
-			g.setColor(Color.GREEN);
-			g.drawRect(1,1,28,28);
-		}
-	}
 
 	public int x;
 	public int y;
