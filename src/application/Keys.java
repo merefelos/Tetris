@@ -3,6 +3,8 @@
 package application;
 
 
+import application.events.MyEvent;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -28,6 +30,10 @@ public class Keys extends KeyAdapter
 		else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			System.out.println("Right");
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_M)
+		{
+			new MyEvent().fire();
 		}
 		else
 		{

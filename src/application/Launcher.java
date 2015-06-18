@@ -1,6 +1,8 @@
 package application;
 
 
+import events.EventControlPanel;
+
 import javax.swing.*;
 
 
@@ -36,6 +38,8 @@ public class Launcher
 		poly.cells.add(new Cell(0,0));
 
 		field.addPolyomino(poly);
+
+		new EventControlPanel();
 	}
 
 	Field field;
