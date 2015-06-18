@@ -23,39 +23,64 @@ public class Polyomino
 		switch (option)
 		{
 			case DOWN:
-				for (int i = 0; i < this.cells.size(); i++)
+				if (this.canMove(DOWN))
 				{
-					if (this.ownerField.canMoveDown(this.cells.get(i)))
+					for (int i = 0; i < this.cells.size(); i++)
 					{
 						this.cells.get(i).y++;
 					}
 				}
 				break;
 			case LEFT:
-				for (int i = 0; i < this.cells.size(); i++)
+				if (this.canMove(LEFT))
 				{
-					if (this.ownerField.canMoveLeft(this.cells.get(i)))
+					for (int i = 0; i < this.cells.size(); i++)
 					{
 						this.cells.get(i).x--;
 					}
 				}
 				break;
 			case RIGHT:
-				for (int i = 0; i < this.cells.size(); i++)
+				if (this.canMove(RIGHT))
 				{
-					if (this.ownerField.canMoveRight(this.cells.get(i)))
+					for (int i = 0; i < this.cells.size(); i++)
 					{
 						this.cells.get(i).x++;
 					}
 				}
 				break;
 			default:
-				for (int i = 0; i < this.cells.size(); i++)
+				break;
+		}
+	}
+
+	public boolean canMove(int direction)
+	{
+		boolean returnValue = true;
+
+		switch (direction)
+		{
+			case Polyomino.DOWN:
+				for (Cell cell : cells)
 				{
-					this.cells.set(i, new Cell(this.cells.get(i).getX(), this.cells.get(i).getY() - 30));
+					returnValue &= this.ownerField.canMoveDown(cell);
+				}
+				break;
+			case Polyomino.LEFT:
+				for (Cell cell : cells)
+				{
+					returnValue &= this.ownerField.canMoveLeft(cell);
+				}
+				break;
+			case Polyomino.RIGHT:
+				for (Cell cell : cells)
+				{
+					returnValue &= this.ownerField.canMoveRight(cell);
 				}
 				break;
 		}
+
+		return returnValue;
 	}
 
 

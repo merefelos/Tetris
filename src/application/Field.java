@@ -86,7 +86,6 @@ public class Field extends JPanel
 		return returnValue;
 	}
 
-
 	private int width = 10;
 	private int height = 20;
 
