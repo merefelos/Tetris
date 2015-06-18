@@ -11,10 +11,12 @@ import java.util.List;
 
 public class Polyomino
 {
-	public Polyomino()
+	public Polyomino(Field field)
 	{
+		this.ownerField = field;
 		this.cells = new ArrayList<Cell>();
 	}
+
 
 	public void move(int option)
 	{
@@ -23,19 +25,28 @@ public class Polyomino
 			case DOWN:
 				for (int i = 0; i < this.cells.size(); i++)
 				{
-					this.cells.set(i, new Cell(this.cells.get(i).getX(), this.cells.get(i).getY() - 30));
+					if (this.ownerField.canMoveDown(this.cells.get(i)))
+					{
+						this.cells.get(i).y++;
+					}
 				}
 				break;
 			case LEFT:
 				for (int i = 0; i < this.cells.size(); i++)
 				{
-					this.cells.set(i, new Cell(this.cells.get(i).getX() - 30, this.cells.get(i).getY()));
+					if (this.ownerField.canMoveLeft(this.cells.get(i)))
+					{
+						this.cells.get(i).x--;
+					}
 				}
 				break;
 			case RIGHT:
 				for (int i = 0; i < this.cells.size(); i++)
 				{
-					this.cells.set(i, new Cell(this.cells.get(i).getX() + 30, this.cells.get(i).getY()));
+					if (this.ownerField.canMoveRight(this.cells.get(i)))
+					{
+						this.cells.get(i).x++;
+					}
 				}
 				break;
 			default:
@@ -47,8 +58,11 @@ public class Polyomino
 		}
 	}
 
-	public              List<Cell> cells = new ArrayList<Cell>();
-	public static final int        DOWN  = 0;
-	public static final int        LEFT  = 1;
-	public static final int        RIGHT = 2;
+
+	public List<Cell> cells = new ArrayList<Cell>();
+	public static final int DOWN = 0;
+	public static final int LEFT = 1;
+	public static final int RIGHT = 2;
+
+	Field ownerField;
 }

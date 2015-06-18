@@ -52,8 +52,48 @@ public class Field extends JPanel
 //		g.drawRect(50, 50, 50, 50);
 	}
 
+	public boolean canMoveDown(Cell cell)
+	{
+		boolean returnValue = true;
+
+		if (cell.y == this.height - 1)
+		{
+			returnValue = false;
+		}
+
+		return returnValue;
+	}
+
+
+	public boolean canMoveRight(Cell cell)
+	{
+		boolean returnValue = true;
+
+		if (cell.x == this.width - 1)
+		{
+			returnValue = false;
+		}
+
+		return returnValue;
+	}
+
+
+	public boolean canMoveLeft(Cell cell)
+	{
+		boolean returnValue = true;
+
+		if (cell.x == 0)
+		{
+			returnValue = false;
+		}
+
+		return returnValue;
+	}
+
+
 	private int width = 10;
 	private int height = 20;
 
 	ArrayList<Cell> cells = new ArrayList<Cell>();
+	public Polyomino activePolyomino;
 }

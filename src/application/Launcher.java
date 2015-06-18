@@ -1,9 +1,13 @@
 package application;
 
 
+import application.events.MyEvent;
+import application.events.RepaintFrameEvent;
+import application.events.SlideEvent;
 import events.EventControlPanel;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 /**
@@ -25,21 +29,26 @@ public class Launcher
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setContentPane(ui.getRootPanel());
 		frame.setVisible(true);
-		frame.setSize(800, 600);
+		frame.setSize(800, 800);
 
-		ui.getRootPanel().addKeyListener(new Keys());
-		ui.getRootPanel().grabFocus();
 		field = (Field) ui.playground;
 
-		Polyomino poly =new Polyomino();
-		poly.cells.add(new Cell(5,5));
-		poly.cells.add(new Cell(10,5));
-		poly.cells.add(new Cell(7,9));
-		poly.cells.add(new Cell(0,0));
+		Polyomino poly =new Polyomino(field);
+		poly.cells.add(new Cell(1, 1));
+		poly.cells.add(new Cell(1, 0));
+		poly.cells.add(new Cell(0, 1));
+		poly.cells.add(new Cell(0, 0));
 
 		field.addPolyomino(poly);
 
+		field.activePolyomino = poly;
+
 		new EventControlPanel();
+
+		EventControlPanel.registerRegularEvent(new SlideEvent(1000, new RepaintFrameEvent(field), poly));
+
+		ui.getRootPanel().addKeyListener(new Keys(poly));
+		ui.getRootPanel().grabFocus();
 	}
 
 	Field field;
