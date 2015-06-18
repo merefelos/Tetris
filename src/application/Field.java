@@ -1,8 +1,7 @@
 package application;
 
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -14,6 +13,18 @@ import javax.swing.*;
 
 public class Field extends JPanel
 {
+	public Field(boolean isDoubleBuffered)
+	{
+		super(isDoubleBuffered);
+
+		Dimension dimension = new Dimension(300, 600);
+
+		this.setPreferredSize(dimension);
+		this.setMinimumSize(dimension);
+		this.setMaximumSize(dimension);
+	}
+
+
 	public void addPolyomino(Polyomino polyomino)
 	{
 		this.cells.addAll(polyomino.cells);
@@ -25,14 +36,6 @@ public class Field extends JPanel
 		this.cells.add(cell);
 	}
 
-
-	@Override
-	public void paintComponents(Graphics g)
-	{
-		super.paintComponents(g);
-	}
-
-
 	@Override
 	protected void paintComponent(Graphics g)
 	{
@@ -43,13 +46,6 @@ public class Field extends JPanel
 		{
 			cell.paintComponent(g);
 		}
-	}
-
-
-	public void draw(Graphics g)
-	{
-//		g.setColor(Color.green);
-//		g.drawRect(50, 50, 50, 50);
 	}
 
 	public boolean canMoveDown(Cell cell)

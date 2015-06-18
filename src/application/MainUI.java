@@ -22,6 +22,6 @@ public class MainUI
 
 	private void createUIComponents()
 	{
-		this.playground = new Field();
+		this.playground = new Field(true);
 	}
 }

@@ -33,7 +33,7 @@ public class Launcher
 
 		field = (Field) ui.playground;
 
-		Polyomino poly =new Polyomino(field);
+		Polyomino poly = new Polyomino(field);
 		poly.cells.add(new Cell(1, 1));
 		poly.cells.add(new Cell(1, 0));
 		poly.cells.add(new Cell(0, 1));
