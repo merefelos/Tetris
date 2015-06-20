@@ -22,7 +22,7 @@ public class Polyomino
 	}
 
 
-	public void move(int option)
+	public synchronized void move(int option)
 	{
 		switch (option)
 		{
@@ -92,7 +92,7 @@ public class Polyomino
 		return returnValue;
 	}
 
-	public void rotateRight()
+	public synchronized void rotateRight()
 	{
 		if (this.type.equals(PolyominoFactory.Type.i))
 		{
@@ -127,7 +127,7 @@ public class Polyomino
 		}
 	}
 
-	public boolean canRotate()
+	public synchronized boolean canRotate()
 	{
 		boolean canToo = true;
 		Polyomino polyomino = PolyominoFactory.polyominoClone(this);
