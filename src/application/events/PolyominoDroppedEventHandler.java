@@ -15,5 +15,7 @@ public class PolyominoDroppedEventHandler implements EventHandler<PolyominoDropp
 		Polyomino polyomino = event.field.spawnPolyomino();
 		event.field.slideEvent.activePolyomino = polyomino;
 		event.field.keys.polyomino = polyomino;
+
+		new CheckForFullLinesEvent(event.field).fire();
 	}
 }

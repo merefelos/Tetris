@@ -30,13 +30,13 @@ public class Field extends JPanel
 
 	public void addPolyomino(Polyomino polyomino)
 	{
-		this.visibleCells.addAll(polyomino.cells);
+//		this.visibleCells.addAll(polyomino.cells);
 	}
 
 
 	public void addCell(Cell cell)
 	{
-		this.visibleCells.add(cell);
+//		this.visibleCells.add(cell);
 	}
 
 	@Override
@@ -45,7 +45,12 @@ public class Field extends JPanel
 		super.paintComponent(g);
 
 		g.setColor(Color.green);
-		for (Cell cell : visibleCells)
+		for (Cell cell : fallenCells)
+		{
+			cell.paintComponent(g);
+		}
+
+		for (Cell cell : activePolyomino.cells)
 		{
 			cell.paintComponent(g);
 		}
@@ -145,11 +150,10 @@ public class Field extends JPanel
 		return returnValue;
 	}
 
-	private int width  = 10;
+	public int width  = 10;
 	private int height = 20;
 
-	ArrayList<Cell> visibleCells = new ArrayList<Cell>();
-	ArrayList<Cell> fallenCells  = new ArrayList<Cell>();
+	public ArrayList<Cell> fallenCells  = new ArrayList<Cell>();
 
 	public Polyomino  activePolyomino;
 	public SlideEvent slideEvent;
