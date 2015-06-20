@@ -10,15 +10,13 @@ import events.regularevents.RegularEvent;
  */
 public class SlideEvent extends RegularEvent
 {
-	public SlideEvent(long frequency, RepaintFrameEvent repaintFrameEvent, Polyomino activePolyomino)
+	public SlideEvent(long frequency, Polyomino activePolyomino)
 	{
 		super(frequency);
-		this.repaintFrameEvent = repaintFrameEvent;
 		this.activePolyomino = activePolyomino;
 
 		this.setEventHandler(new SlideEventHandler());
 	}
 
-	RepaintFrameEvent repaintFrameEvent;
 	Polyomino activePolyomino;
 }

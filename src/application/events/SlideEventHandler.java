@@ -14,6 +14,5 @@ public class SlideEventHandler implements EventHandler<SlideEvent>
 	public void handleEvent(SlideEvent event)
 	{
 		new MovePolyominoEvent(Polyomino.DOWN, event.activePolyomino).fire();
-		event.repaintFrameEvent.fire();
 	}
 }

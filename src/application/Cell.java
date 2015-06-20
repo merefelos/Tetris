@@ -18,19 +18,65 @@ public class Cell extends JPanel
 		this.setMaximumSize(dimension);
 		this.setOpaque(false);
 
-		this.x = x;
-		this.y = y;
+		this.logicalX = x;
+		this.logicalY = y;
 	}
 
 
 	@Override
 	public void paintComponent(Graphics g)
 	{
+		expectedActualX = (30* logicalX) + 1;
+		expectedActualY = (30* logicalY) + 1;
+
 		super.paintComponent(g);
     		g.setColor(Color.GREEN);
-			g.drawRect((30*x) + 1, (30*y) + 1,28,28);
+			g.drawRect((int) actualX, (int) actualY,28,28);
+
+		this.adjustActualPosition();
+	}
+
+
+	private void adjustActualPosition()
+	{
+		double xDiff = expectedActualX - actualX;
+		double yDiff = expectedActualY - actualY;
+
+//		xDiff /= 20;
+//		yDiff /= 20;
+
+
+		if (Math.abs(xDiff) < 1)
+		{
+			actualX = expectedActualX;
+		}
+		else
+		{
+			actualX += xDiff;
 		}
 
-	public int x;
-	public int y;
+		if (Math.abs(yDiff) < 1)
+		{
+			actualY = expectedActualY;
+		}
+		else
+		{
+			actualY += yDiff;
+		}
+	}
+
+	public boolean atExpectedPosition()
+	{
+		return actualX == expectedActualX && actualY == expectedActualY;
+	}
+
+	int expectedActualX = 0;
+	int expectedActualY = 0;
+
+
+	public int logicalX;
+	public int logicalY;
+
+	public double actualX = 50;
+	public double actualY = 50;
 }

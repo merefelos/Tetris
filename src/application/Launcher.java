@@ -1,13 +1,11 @@
 package application;
 
 
-import application.events.MyEvent;
 import application.events.RepaintFrameEvent;
 import application.events.SlideEvent;
 import events.EventControlPanel;
 
 import javax.swing.*;
-import java.awt.*;
 
 
 /**
@@ -45,7 +43,9 @@ public class Launcher
 
 		new EventControlPanel();
 
-		EventControlPanel.registerRegularEvent(new SlideEvent(1000, new RepaintFrameEvent(field), poly));
+		EventControlPanel.registerRegularEvent(new RepaintFrameEvent(1000/20, field));
+
+		EventControlPanel.registerRegularEvent(new SlideEvent(1000, poly));
 
 		ui.getRootPanel().addKeyListener(new Keys(poly));
 		ui.getRootPanel().grabFocus();

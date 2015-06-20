@@ -27,7 +27,7 @@ public class Polyomino
 				{
 					for (int i = 0; i < this.cells.size(); i++)
 					{
-						this.cells.get(i).y++;
+						this.cells.get(i).logicalY++;
 					}
 				}
 				break;
@@ -36,7 +36,7 @@ public class Polyomino
 				{
 					for (int i = 0; i < this.cells.size(); i++)
 					{
-						this.cells.get(i).x--;
+						this.cells.get(i).logicalX--;
 					}
 				}
 				break;
@@ -45,7 +45,7 @@ public class Polyomino
 				{
 					for (int i = 0; i < this.cells.size(); i++)
 					{
-						this.cells.get(i).x++;
+						this.cells.get(i).logicalX++;
 					}
 				}
 				break;

@@ -52,7 +52,7 @@ public class Field extends JPanel
 	{
 		boolean returnValue = true;
 
-		if (cell.y == this.height - 1)
+		if (cell.logicalY == this.height - 1)
 		{
 			returnValue = false;
 		}
@@ -65,7 +65,7 @@ public class Field extends JPanel
 	{
 		boolean returnValue = true;
 
-		if (cell.x == this.width - 1)
+		if (cell.logicalX == this.width - 1)
 		{
 			returnValue = false;
 		}
@@ -78,7 +78,7 @@ public class Field extends JPanel
 	{
 		boolean returnValue = true;
 
-		if (cell.x == 0)
+		if (cell.logicalX == 0)
 		{
 			returnValue = false;
 		}
