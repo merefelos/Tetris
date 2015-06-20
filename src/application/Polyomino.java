@@ -3,6 +3,7 @@ package application;
 
 import application.events.PolyominoDroppedEvent;
 
+import java.awt.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -191,6 +192,16 @@ public class Polyomino
 
 		return canToo;
 	}
+
+
+	public void setColor(Color color)
+	{
+		for (Cell cell : cells)
+		{
+			cell.color = color;
+		}
+	}
+
 
 	public              List<Cell> cells = new ArrayList<Cell>();
 	public static final int        DOWN  = 0;

@@ -20,6 +20,10 @@ public class Cell extends JPanel
 
 		this.logicalX = x;
 		this.logicalY = y;
+		this.actualX = x;
+		this.actualY = y;
+		this.expectedActualX = x;
+		this.expectedActualY = y;
 	}
 
 
@@ -30,39 +34,61 @@ public class Cell extends JPanel
 		expectedActualY = (30* logicalY) + 1;
 
 		super.paintComponent(g);
-    		g.setColor(Color.GREEN);
+    		g.setColor(color);
 			g.fillRect((int) actualX, (int) actualY,28,28);
-
+		    g.drawRect((int) expectedActualX, (int) expectedActualY, 28,28);
 		this.adjustActualPosition();
 	}
 
 
 	private void adjustActualPosition()
 	{
-		double xDiff = expectedActualX - actualX;
-		double yDiff = expectedActualY - actualY;
+		int xDiff = (int) (expectedActualX - actualX);
+		int yDiff = (int) (expectedActualY - actualY);
 
-		xDiff /= 20;
-		yDiff /= 20;
+		int xi = 5;
+		int yi = 5;
 
-
-		if (Math.abs(xDiff) < 1)
+		if (Math.abs(xDiff) < xi)
 		{
-			actualX = expectedActualX;
+			xi = xDiff;
+		}
+
+		if (Math.abs(yDiff) < yi)
+		{
+			yi = yDiff;
+		}
+//		xDiff /= Math.abs(xDiff);
+//		yDiff /= Math.abs(yDiff);
+
+		if (xDiff < 0)
+		{
+			xDiff = -xi;
+		}
+		else if (xDiff == 0)
+		{
+			xDiff = 0;
 		}
 		else
 		{
+			xDiff = xi;
+		}
+
+		if (yDiff < 0)
+		{
+			yDiff = -yi;
+		}
+		else if (yDiff == 0)
+		{
+			yDiff = 0;
+		}
+		else
+		{
+			yDiff = yi;
+		}
+
 			actualX += xDiff;
-		}
-
-		if (Math.abs(yDiff) < 1)
-		{
-			actualY = expectedActualY;
-		}
-		else
-		{
 			actualY += yDiff;
-		}
 	}
 
 	public boolean atExpectedPosition()
@@ -73,10 +99,11 @@ public class Cell extends JPanel
 	int expectedActualX = 0;
 	int expectedActualY = 0;
 
-
 	public int logicalX;
 	public int logicalY;
 
 	public double actualX = 50;
 	public double actualY = 50;
+
+	public Color color;
 }

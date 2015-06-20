@@ -1,5 +1,7 @@
 package application;
 
+import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -69,6 +71,8 @@ public class PolyominoFactory
 				break;
 		}
 
+		poly.setColor(new ColorScheme().get(poly.type));
+
 		return poly;
 	}
 
@@ -87,4 +91,17 @@ public class PolyominoFactory
 		i, o, t, l, rl, s, rs
 	}
 
+	private static class ColorScheme extends HashMap<Type, Color>
+	{
+		public ColorScheme()
+		{
+			this.put(Type.s, Color.blue);
+			this.put(Type.o, Color.red);
+			this.put(Type.t, Color.WHITE);
+			this.put(Type.i, Color.GREEN);
+			this.put(Type.l, Color.cyan);
+			this.put(Type.rl, Color.yellow);
+			this.put(Type.rs, Color.magenta);
+		}
+	}
 }
