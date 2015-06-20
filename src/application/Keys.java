@@ -35,12 +35,19 @@ public class Keys extends KeyAdapter
 		{
 			new MovePolyominoEvent(Polyomino.RIGHT, polyomino).fire();
 		}
+		else if (e.getKeyCode() == KeyEvent.VK_UP)
+		{
+			if (polyomino.canRotate())
+			{
+				polyomino.rotateRight();
+			}
+		}
 		else
 		{
 			System.out.println("!!!");
 		}
 	}
 
-	public MyEvent event;
+	public MyEvent   event;
 	public Polyomino polyomino;
 }

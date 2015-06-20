@@ -59,6 +59,13 @@ public class Field extends JPanel
 		{
 			returnValue = false;
 		}
+		for (Cell fallenCell : fallenCells)
+		{
+			if (fallenCell.logicalX == cell.logicalX && fallenCell.logicalY == (cell.logicalY + 1))
+			{
+				returnValue = false;
+			}
+		}
 
 		return returnValue;
 	}
@@ -71,6 +78,13 @@ public class Field extends JPanel
 		if (cell.logicalX == this.width - 1)
 		{
 			returnValue = false;
+		}
+		for (Cell fallenCell : fallenCells)
+		{
+			if (fallenCell.logicalX == (cell.logicalX + 1) && fallenCell.logicalY == cell.logicalY)
+			{
+				returnValue = false;
+			}
 		}
 
 		return returnValue;
@@ -85,17 +99,20 @@ public class Field extends JPanel
 		{
 			returnValue = false;
 		}
+		for (Cell fallenCell : fallenCells)
+		{
+			if (fallenCell.logicalX == (cell.logicalX - 1) && fallenCell.logicalY == cell.logicalY)
+			{
+				returnValue = false;
+			}
+		}
 
 		return returnValue;
 	}
 
 	public Polyomino spawnPolyomino()
 	{
-		Polyomino poly = new Polyomino(this);
-		poly.cells.add(new Cell(1, 1));
-		poly.cells.add(new Cell(1, 0));
-		poly.cells.add(new Cell(0, 1));
-		poly.cells.add(new Cell(0, 0));
+		Polyomino poly = PolyominoFactory.produceRandomPolyomino(this);
 
 		this.addPolyomino(poly);
 
@@ -104,14 +121,37 @@ public class Field extends JPanel
 		return poly;
 	}
 
+	public boolean isLegit(Polyomino polyomino)
+	{
+		boolean returnValue = true;
+		for (Cell cell : polyomino.cells)
+		{
+			for (Cell fallenCell : fallenCells)
+			{
+				if (fallenCell.logicalX == cell.logicalX && fallenCell.logicalY == cell.logicalY)
+				{
+					returnValue = false;
+					break;
+				}
+			}
+			if (cell.logicalX < 0 || cell.logicalY < 0 ||
+					cell.logicalX > this.width || cell.logicalY > this.width)
+			{
+				returnValue = false;
+				break;
+			}
+		}
+
+		return returnValue;
+	}
 
 	private int width  = 10;
 	private int height = 20;
 
 	ArrayList<Cell> visibleCells = new ArrayList<Cell>();
-	ArrayList<Cell> fallenCells = new ArrayList<Cell>();
+	ArrayList<Cell> fallenCells  = new ArrayList<Cell>();
 
-	public Polyomino activePolyomino;
+	public Polyomino  activePolyomino;
 	public SlideEvent slideEvent;
-	public Keys keys;
+	public Keys       keys;
 }
