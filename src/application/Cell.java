@@ -31,7 +31,7 @@ public class Cell extends JPanel
 
 		super.paintComponent(g);
     		g.setColor(Color.GREEN);
-			g.drawRect((int) actualX, (int) actualY,28,28);
+			g.fillRect((int) actualX, (int) actualY,28,28);
 
 		this.adjustActualPosition();
 	}
@@ -42,8 +42,8 @@ public class Cell extends JPanel
 		double xDiff = expectedActualX - actualX;
 		double yDiff = expectedActualY - actualY;
 
-//		xDiff /= 20;
-//		yDiff /= 20;
+		xDiff /= 20;
+		yDiff /= 20;
 
 
 		if (Math.abs(xDiff) < 1)

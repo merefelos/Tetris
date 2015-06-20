@@ -12,5 +12,6 @@ public class RotatePolyominoEventHandler implements EventHandler<RotatePolyomino
 	public void handleEvent(RotatePolyominoEvent event)
 	{
 		event.polyomino.rotateRight();
+		event.polyomino.rotateRight();
 	}
 }

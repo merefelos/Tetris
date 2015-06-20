@@ -6,6 +6,8 @@ import application.events.SlideEvent;
 import events.EventControlPanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 /**
@@ -42,9 +44,21 @@ public class Launcher
 
 		field.activePolyomino = poly;*/
 
+		Timer timer = new Timer(1000/60, new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				field.repaint();
+			}
+		});
+
+		timer.setRepeats(true);
+		timer.start();
+
 		new EventControlPanel();
 
-		EventControlPanel.registerRegularEvent(new RepaintFrameEvent(1000/20, field));
+//		EventControlPanel.registerRegularEvent(new RepaintFrameEvent(1000/16, field));
 		field.slideEvent = new SlideEvent(1000, poly);
 		EventControlPanel.registerRegularEvent(field.slideEvent);
 

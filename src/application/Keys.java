@@ -24,6 +24,7 @@ public class Keys extends KeyAdapter
 	public void keyPressed(KeyEvent e)
 	{
 		super.keyPressed(e);
+
 		if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			new MovePolyominoEvent(Polyomino.DOWN, polyomino).fire();
