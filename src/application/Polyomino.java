@@ -125,58 +125,63 @@ public class Polyomino
 		else
 		{
 			this.cells.get(this.centerPiece);
+
 			for (Cell cell : this.cells)
 			{
 				// Cell to the right of center
 				if (cell.logicalX - 1 == this.cells.get(this.centerPiece).logicalX)
 				{
-					// Cell above center - shift down
+					// Cell above center - shift down-down
 					if (cell.logicalY + 1 == this.cells.get(this.centerPiece).logicalY)
 					{
-						cell.logicalY += 1;
+						cell.logicalY += 2;
 					}
-					// Cell below center - shift left
+					// Cell below center - shift left-left
 					else if (cell.logicalY - 1 == this.cells.get(this.centerPiece).logicalY)
 					{
-						cell.logicalX -= 1;
+						cell.logicalX -= 2;
 					}
-					// Cell on same level as center - shift down
+					// Cell on same level as center - shift down-left
 					else
 					{
 						cell.logicalY += 1;
+						cell.logicalX -= 1;
 					}
 				}
 				// Cell to the left of center
 				else if (cell.logicalX + 1 == this.cells.get(this.centerPiece).logicalX)
 				{
-					// Cell above center - shift right
+					// Cell above center - shift right-right
 					if (cell.logicalY + 1 == this.cells.get(this.centerPiece).logicalY)
 					{
-						cell.logicalX += 1;
+						cell.logicalX += 2;
 					}
-					// Cell below center - shift up
+					// Cell below center - shift up-up
 					else if (cell.logicalY - 1 == this.cells.get(this.centerPiece).logicalY)
 					{
-						cell.logicalY -= 1;
+						cell.logicalY -= 2;
 					}
-					// Cell on same level as center - shift up
+					// Cell on same level as center - shift up-right
 					else
 					{
 						cell.logicalY -= 1;
+						cell.logicalX += 1;
 					}
 				}
 				// Cell on same X as center
 				else if (cell.logicalX == this.cells.get(this.centerPiece).logicalX)
 				{
-					// Cell above center - shift right
+					// Cell above center - shift right-down
 					if (cell.logicalY + 1 == this.cells.get(this.centerPiece).logicalY)
 					{
 						cell.logicalX += 1;
+						cell.logicalY += 1;
 					}
-					// Cell below center - shift left
+					// Cell below center - shift left-up
 					else if (cell.logicalY - 1 == this.cells.get(this.centerPiece).logicalY)
 					{
 						cell.logicalX -= 1;
+						cell.logicalY -= 1;
 					}
 				}
 			}
