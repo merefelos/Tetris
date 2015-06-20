@@ -42,5 +42,5 @@ public class Keys extends KeyAdapter
 	}
 
 	public MyEvent event;
-	private Polyomino polyomino;
+	public Polyomino polyomino;
 }

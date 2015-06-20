@@ -44,10 +44,11 @@ public class Launcher
 		new EventControlPanel();
 
 		EventControlPanel.registerRegularEvent(new RepaintFrameEvent(1000/20, field));
+		field.slideEvent = new SlideEvent(1000, poly);
+		EventControlPanel.registerRegularEvent(field.slideEvent);
 
-		EventControlPanel.registerRegularEvent(new SlideEvent(1000, poly));
-
-		ui.getRootPanel().addKeyListener(new Keys(poly));
+		field.keys = new Keys(poly);
+		ui.getRootPanel().addKeyListener(field.keys);
 		ui.getRootPanel().grabFocus();
 	}
 

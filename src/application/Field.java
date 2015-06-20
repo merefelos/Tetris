@@ -1,6 +1,9 @@
 package application;
 
 
+import application.events.PolyominoDroppedEvent;
+import application.events.SlideEvent;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -27,13 +30,13 @@ public class Field extends JPanel
 
 	public void addPolyomino(Polyomino polyomino)
 	{
-		this.cells.addAll(polyomino.cells);
+		this.visibleCells.addAll(polyomino.cells);
 	}
 
 
 	public void addCell(Cell cell)
 	{
-		this.cells.add(cell);
+		this.visibleCells.add(cell);
 	}
 
 	@Override
@@ -42,7 +45,7 @@ public class Field extends JPanel
 		super.paintComponent(g);
 
 		g.setColor(Color.green);
-		for (Cell cell : cells)
+		for (Cell cell : visibleCells)
 		{
 			cell.paintComponent(g);
 		}
@@ -86,9 +89,29 @@ public class Field extends JPanel
 		return returnValue;
 	}
 
-	private int width = 10;
+	public Polyomino spawnPolyomino()
+	{
+		Polyomino poly = new Polyomino(this);
+		poly.cells.add(new Cell(1, 1));
+		poly.cells.add(new Cell(1, 0));
+		poly.cells.add(new Cell(0, 1));
+		poly.cells.add(new Cell(0, 0));
+
+		this.addPolyomino(poly);
+
+		this.activePolyomino = poly;
+
+		return poly;
+	}
+
+
+	private int width  = 10;
 	private int height = 20;
 
-	ArrayList<Cell> cells = new ArrayList<Cell>();
+	ArrayList<Cell> visibleCells = new ArrayList<Cell>();
+	ArrayList<Cell> fallenCells = new ArrayList<Cell>();
+
 	public Polyomino activePolyomino;
+	public SlideEvent slideEvent;
+	public Keys keys;
 }

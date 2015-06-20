@@ -1,6 +1,8 @@
 package application;
 
 
+import application.events.PolyominoDroppedEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,11 @@ public class Polyomino
 					{
 						this.cells.get(i).logicalY++;
 					}
+				}
+				else // TODO: Complicate it!
+				{
+					this.ownerField.fallenCells.addAll(this.cells);
+					new PolyominoDroppedEvent(this.ownerField).fire();
 				}
 				break;
 			case LEFT:
