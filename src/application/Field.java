@@ -135,7 +135,7 @@ public class Field extends JPanel
 				}
 			}
 			if (cell.logicalX < 0 || cell.logicalY < 0 ||
-					cell.logicalX > this.width || cell.logicalY > this.width)
+					cell.logicalX >= this.width || cell.logicalY >= this.height)
 			{
 				returnValue = false;
 				break;

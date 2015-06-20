@@ -5,6 +5,7 @@ package application;
 
 import application.events.MovePolyominoEvent;
 import application.events.MyEvent;
+import application.events.RotatePolyominoEvent;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -39,7 +40,8 @@ public class Keys extends KeyAdapter
 		{
 			if (polyomino.canRotate())
 			{
-				polyomino.rotateRight();
+				//polyomino.rotateRight();
+				new RotatePolyominoEvent(polyomino).fire();
 			}
 		}
 		else

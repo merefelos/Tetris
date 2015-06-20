@@ -14,6 +14,8 @@ public class PolyominoFactory
 		Random random = new Random(System.currentTimeMillis());
 		int theRandom = random.nextInt(list.length);
 		Type type = list[theRandom];
+		// Test value
+		type = Type.i;
 
 		Polyomino poly = new Polyomino(field, type);
 
@@ -69,7 +71,10 @@ public class PolyominoFactory
 	public static Polyomino polyominoClone(Polyomino polyomino)
 	{
 		Polyomino poly = new Polyomino(polyomino.ownerField, polyomino.type);
-		poly.cells.addAll(polyomino.cells);
+		for (Cell cell : polyomino.cells)
+		{
+			poly.cells.add(new Cell(cell.logicalX, cell.logicalY));
+		}
 		return poly;
 	}
 
