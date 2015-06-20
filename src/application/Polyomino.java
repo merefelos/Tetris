@@ -123,7 +123,62 @@ public class Polyomino
 		}
 		else
 		{
-
+			this.cells.get(this.centerPiece);
+			for (Cell cell : this.cells)
+			{
+				// Cell to the right of center
+				if (cell.logicalX - 1 == this.cells.get(this.centerPiece).logicalX)
+				{
+					// Cell above center - shift down
+					if (cell.logicalY + 1 == this.cells.get(this.centerPiece).logicalY)
+					{
+						cell.logicalY += 1;
+					}
+					// Cell below center - shift left
+					else if (cell.logicalY - 1 == this.cells.get(this.centerPiece).logicalY)
+					{
+						cell.logicalX -= 1;
+					}
+					// Cell on same level as center - shift down
+					else
+					{
+						cell.logicalY += 1;
+					}
+				}
+				// Cell to the left of center
+				else if (cell.logicalX + 1 == this.cells.get(this.centerPiece).logicalX)
+				{
+					// Cell above center - shift right
+					if (cell.logicalY + 1 == this.cells.get(this.centerPiece).logicalY)
+					{
+						cell.logicalX += 1;
+					}
+					// Cell below center - shift up
+					else if (cell.logicalY - 1 == this.cells.get(this.centerPiece).logicalY)
+					{
+						cell.logicalY -= 1;
+					}
+					// Cell on same level as center - shift up
+					else
+					{
+						cell.logicalY -= 1;
+					}
+				}
+				// Cell on same X as center
+				else if (cell.logicalX == this.cells.get(this.centerPiece).logicalX)
+				{
+					// Cell above center - shift right
+					if (cell.logicalY + 1 == this.cells.get(this.centerPiece).logicalY)
+					{
+						cell.logicalX += 1;
+					}
+					// Cell below center - shift left
+					else if (cell.logicalY - 1 == this.cells.get(this.centerPiece).logicalY)
+					{
+						cell.logicalX -= 1;
+					}
+				}
+			}
 		}
 	}
 
@@ -143,6 +198,7 @@ public class Polyomino
 	public static final int        RIGHT = 2;
 
 	public PolyominoFactory.Type type;
+	public int                   centerPiece;
 
 	Field ownerField;
 

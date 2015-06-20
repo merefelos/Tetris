@@ -14,8 +14,6 @@ public class PolyominoFactory
 		Random random = new Random(System.currentTimeMillis());
 		int theRandom = random.nextInt(list.length);
 		Type type = list[theRandom];
-		// Test value
-		type = Type.i;
 
 		Polyomino poly = new Polyomino(field, type);
 
@@ -34,30 +32,36 @@ public class PolyominoFactory
 				poly.cells.add(new Cell(0, 0));
 				break;
 			case t:
+				poly.centerPiece = 1;
 				poly.cells.add(new Cell(0, 0));
 				poly.cells.add(new Cell(1, 0));
 				poly.cells.add(new Cell(2, 0));
 				poly.cells.add(new Cell(1, 1));
+
 				break;
 			case l:
+				poly.centerPiece = 1;
 				poly.cells.add(new Cell(0, 0));
 				poly.cells.add(new Cell(0, 1));
 				poly.cells.add(new Cell(0, 2));
 				poly.cells.add(new Cell(1, 2));
 				break;
 			case rl:
+				poly.centerPiece = 1;
 				poly.cells.add(new Cell(1, 0));
 				poly.cells.add(new Cell(1, 1));
 				poly.cells.add(new Cell(1, 2));
 				poly.cells.add(new Cell(0, 2));
 				break;
 			case s:
+				poly.centerPiece = 1;
 				poly.cells.add(new Cell(0, 0));
 				poly.cells.add(new Cell(0, 1));
 				poly.cells.add(new Cell(1, 1));
 				poly.cells.add(new Cell(1, 2));
 				break;
 			case rs:
+				poly.centerPiece = 2;
 				poly.cells.add(new Cell(1, 0));
 				poly.cells.add(new Cell(1, 1));
 				poly.cells.add(new Cell(0, 1));
