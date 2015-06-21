@@ -73,5 +73,7 @@ public class CheckForFullLinesEventHandler implements EventHandler<CheckForFullL
 				}
 			}
 		}
+
+		new SpawnPolyominoEvent(event.field).fire();
 	}
 }

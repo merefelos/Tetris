@@ -16,7 +16,5 @@ public class PolyominoDroppedEventHandler implements EventHandler<PolyominoDropp
 		event.field.fallenCells.addAll(event.field.activePolyomino.cells);
 
 		new CheckForFullLinesEvent(event.field).fire();
-
-		new SpawnPolyominoEvent(event.field).fire();
 	}
 }

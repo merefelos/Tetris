@@ -35,11 +35,6 @@ public class Field extends JPanel
 	}
 
 
-	public void addCell(Cell cell)
-	{
-//		this.visibleCells.add(cell);
-	}
-
 	@Override
 	protected void paintComponent(Graphics g)
 	{
@@ -48,26 +43,31 @@ public class Field extends JPanel
 		try
 		{
 			g.setColor(Color.green);
-			synchronized (fallenCells)
+			for (Cell cell : fallenCells)
 			{
-				for (Cell cell : fallenCells)
-				{
-					cell.paintComponent(g);
-				}
+				cell.paintComponent(g);
 			}
 
-			synchronized (activePolyomino)
+			for (Cell cell : activePolyomino.cells)
 			{
-				for (Cell cell : activePolyomino.cells)
-				{
-					cell.paintComponent(g);
-				}
+				cell.paintComponent(g);
 			}
+
+			int i = this.activePolyomino.centerPiece;
+			Cell centerCell = this.activePolyomino.cells.get(i);
+
+			g.setColor(Color.DARK_GRAY);
+
+// enable these two lines two mark center piece
+//			g.fillOval(centerCell.expectedActualX + 12, centerCell.expectedActualY + 12, 4, 4);
+//			g.fillOval((int) centerCell.actualX + 12, (int) centerCell.actualY + 12, 4, 4);
+
 		} catch (Exception e)
 		{
 			System.out.println("Error");
 		}
 	}
+
 
 	public boolean canMoveDown(Cell cell)
 	{
@@ -128,6 +128,7 @@ public class Field extends JPanel
 		return returnValue;
 	}
 
+
 	public Polyomino spawnPolyomino()
 	{
 		Polyomino poly = PolyominoFactory.produceRandomPolyomino(this);
@@ -142,9 +143,11 @@ public class Field extends JPanel
 		return poly;
 	}
 
+
 	public boolean isLegit(Polyomino polyomino)
 	{
 		boolean returnValue = true;
+
 		for (Cell cell : polyomino.cells)
 		{
 			for (Cell fallenCell : fallenCells)
@@ -159,19 +162,19 @@ public class Field extends JPanel
 					cell.logicalX >= this.width || cell.logicalY >= this.height)
 			{
 				returnValue = false;
-				break;
 			}
 		}
 
 		return returnValue;
 	}
 
-	public int width  = 10;
+
+	public int width = 10;
 	private int height = 20;
 
-	public LinkedHashSet<Cell> fallenCells  = new LinkedHashSet<Cell>();
+	public LinkedHashSet<Cell> fallenCells = new LinkedHashSet<Cell>();
 
-	public Polyomino  activePolyomino;
+	public Polyomino activePolyomino;
 	public SlideEvent slideEvent;
-	public Keys       keys;
+	public Keys keys;
 }

@@ -35,9 +35,8 @@ public class Polyomino
 						this.cells.get(i).logicalY++;
 					}
 				}
-				else // TODO: Complicate it!
+				else
 				{
-					this.ownerField.fallenCells.addAll(this.cells);
 					new PolyominoDroppedEvent(this.ownerField).fire();
 				}
 				break;
@@ -71,10 +70,15 @@ public class Polyomino
 		switch (direction)
 		{
 			case Polyomino.DOWN:
-				for (Cell cell : cells)
-				{
-					returnValue &= this.ownerField.canMoveDown(cell);
-				}
+					for (Cell cell : cells)
+					{
+						if (cell.logicalY >=0)
+						{
+							returnValue &=
+									this.ownerField.canMoveDown(cell);
+						}
+					}
+
 				break;
 			case Polyomino.LEFT:
 				for (Cell cell : cells)

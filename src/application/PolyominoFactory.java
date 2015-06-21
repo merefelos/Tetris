@@ -79,10 +79,13 @@ public class PolyominoFactory
 	public static Polyomino polyominoClone(Polyomino polyomino)
 	{
 		Polyomino poly = new Polyomino(polyomino.ownerField, polyomino.type);
+
 		for (Cell cell : polyomino.cells)
 		{
 			poly.cells.add(new Cell(cell.logicalX, cell.logicalY));
 		}
+		poly.centerPiece = polyomino.centerPiece;
+
 		return poly;
 	}
 

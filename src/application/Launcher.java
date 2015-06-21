@@ -53,7 +53,7 @@ public class Launcher
 		new EventControlPanel();
 
 //		EventControlPanel.registerRegularEvent(new RepaintFrameEvent(1000/16, field));
-		field.slideEvent = new SlideEvent(1000, poly);
+		field.slideEvent = new SlideEvent(250, poly);
 		EventControlPanel.registerRegularEvent(field.slideEvent);
 
 		field.keys = new Keys(poly);
