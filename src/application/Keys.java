@@ -3,6 +3,7 @@
 package application;
 
 
+import application.events.HardDropEvent;
 import application.events.MovePolyominoEvent;
 import application.events.MyEvent;
 import application.events.RotatePolyominoEvent;
@@ -43,13 +44,12 @@ public class Keys extends KeyAdapter
 			{
 				if (polyomino.canRotate())
 				{
-					//polyomino.rotateRight();
 					new RotatePolyominoEvent(polyomino).fire();
 				}
 			}
-			else
+			else if (e.getKeyCode() == KeyEvent.VK_SPACE)
 			{
-				System.out.println("!!!");
+				new HardDropEvent(polyomino.ownerField).fire();
 			}
 		}
 	}
