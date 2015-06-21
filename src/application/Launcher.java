@@ -28,13 +28,17 @@ public class Launcher
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setContentPane(ui.getRootPanel());
 		frame.setVisible(true);
-		frame.setSize(800, 800);
+		frame.setSize(450, 800);
 
 		field = (Field) ui.playground;
+		nextPanel = (NextPanel) ui.nextPanel;
+		field.nextPanel = nextPanel;
 
 		Polyomino poly = field.spawnPolyomino();
 
 //		new SpawnPolyominoEvent(field).fire();
+
+		nextPanel.setNextPolyomino(PolyominoFactory.produceRandomPolyomino(field));
 
 		Timer timer = new Timer(1000/60, new ActionListener()
 		{
@@ -42,6 +46,7 @@ public class Launcher
 			public void actionPerformed(ActionEvent e)
 			{
 				field.repaint();
+				nextPanel.repaint();
 			}
 		});
 
@@ -59,4 +64,5 @@ public class Launcher
 	}
 
 	Field field;
+	NextPanel nextPanel;
 }

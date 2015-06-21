@@ -14,12 +14,13 @@ public class SpawnPolyominoEventHandler implements EventHandler<SpawnPolyominoEv
 	@Override
 	public void handleEvent(SpawnPolyominoEvent event)
 	{
+		Polyomino nextPoly = event.field.nextPanel.getNextPolyomino();
 		Polyomino poly = PolyominoFactory.produceRandomPolyomino(event.field);
 
-//		event.field.addPolyomino(poly);
+		event.field.nextPanel.setNextPolyomino(poly);
 
-		poly.shift(Polyomino.UP, 2);
-		poly.shift(Polyomino.RIGHT, 4);
+		nextPoly.shift(Polyomino.UP, 2);
+		nextPoly.shift(Polyomino.RIGHT, 4);
 
 		try
 		{
@@ -29,9 +30,9 @@ public class SpawnPolyominoEventHandler implements EventHandler<SpawnPolyominoEv
 			e.printStackTrace();
 		}
 
-		event.field.activePolyomino = poly;
-		event.field.slideEvent.activePolyomino = poly;
-		event.field.keys.polyomino = poly;
+		event.field.activePolyomino = nextPoly;
+		event.field.slideEvent.activePolyomino = nextPoly;
+		event.field.keys.polyomino = nextPoly;
 
 		Event.enable(MovePolyominoEvent.class);
 		Event.enable(SlideEvent.class);

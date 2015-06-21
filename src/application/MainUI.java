@@ -18,10 +18,12 @@ public class MainUI
 	private JPanel rootPanel;
 
 	public JPanel playground;
+	public JPanel nextPanel;
 
 
 	private void createUIComponents()
 	{
 		this.playground = new Field(true);
+		this.nextPanel = new NextPanel();
 	}
 }

@@ -177,4 +177,6 @@ public class Field extends JPanel
 	public Polyomino activePolyomino;
 	public SlideEvent slideEvent;
 	public Keys keys;
+
+	public NextPanel nextPanel;
 }
