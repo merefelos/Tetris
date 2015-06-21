@@ -1,6 +1,7 @@
 package application.events;
 
 import application.Cell;
+import events.Event;
 import events.EventHandler;
 
 import java.util.ArrayList;
@@ -17,38 +18,59 @@ public class CheckForFullLinesEventHandler implements EventHandler<CheckForFullL
 	@Override
 	public void handleEvent(CheckForFullLinesEvent event)
 	{
+		Event.disable(SlideEvent.class);
+		Event.disable(MovePolyominoEvent.class);
+
 		ArrayList<Cell> checkedCells = new ArrayList<Cell>();
 
 		Map<Integer, ArrayList<Cell>> map = new HashMap<Integer, ArrayList<Cell>>();
+		Map<Cell, Integer> moveMap = new HashMap<Cell, Integer>();
 
-		for (int i = 0; i < 20; i++)
+
+//		synchronized (event.field)
 		{
-			map.put(i, new ArrayList<Cell>());
-		}
-
-		for (Cell fallenCell : event.field.fallenCells)
-		{
-			map.get(fallenCell.logicalY).add(fallenCell);
-		}
-
-		for (int i = 0; i < 20; i++)
-		{
-			List<Cell> currentLevel = map.get(i);
-
-			if (currentLevel.size() == event.field.width)
+			for (int i = -5; i < 20; i++)
 			{
-				event.field.fallenCells.removeAll(currentLevel);
+				map.put(i, new ArrayList<Cell>());
+			}
 
-				System.out.println("Removed Line " + i);
+			for (Cell fallenCell : event.field.fallenCells)
+			{
+				map.get(fallenCell.logicalY).add(fallenCell);
+			}
 
-				for (Cell checkedCell : checkedCells)
+			for (int i = 0; i < 20; i++)
+			{
+				List<Cell> currentLevel = map.get(i);
+
+				if (currentLevel.size() >= event.field.width)
 				{
-					checkedCell.logicalY++;
+					event.field.fallenCells.removeAll(currentLevel);
+
+					for (Cell checkedCell : checkedCells)
+					{
+						if (moveMap.get(checkedCell) != null)
+						{
+							moveMap.put(checkedCell, moveMap.get(checkedCell) + 1);
+						}
+						else
+						{
+							moveMap.put(checkedCell, 1);
+						}
+					}
+				}
+				else
+				{
+					checkedCells.addAll(currentLevel);
 				}
 			}
-			else
+
+			for (Cell cell : checkedCells)
 			{
-				checkedCells.addAll(currentLevel);
+				if (moveMap.containsKey(cell))
+				{
+					cell.logicalY += moveMap.get(cell);
+				}
 			}
 		}
 	}

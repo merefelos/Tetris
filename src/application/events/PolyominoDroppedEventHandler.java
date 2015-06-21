@@ -12,10 +12,11 @@ public class PolyominoDroppedEventHandler implements EventHandler<PolyominoDropp
 	@Override
 	public void handleEvent(PolyominoDroppedEvent event)
 	{
-		Polyomino polyomino = event.field.spawnPolyomino();
-		event.field.slideEvent.activePolyomino = polyomino;
-		event.field.keys.polyomino = polyomino;
+		event.field.keys.polyomino = null;
+		event.field.fallenCells.addAll(event.field.activePolyomino.cells);
 
 		new CheckForFullLinesEvent(event.field).fire();
+
+		new SpawnPolyominoEvent(event.field).fire();
 	}
 }

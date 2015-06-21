@@ -3,6 +3,7 @@ package application;
 
 import application.events.RepaintFrameEvent;
 import application.events.SlideEvent;
+import application.events.SpawnPolyominoEvent;
 import events.EventControlPanel;
 
 import javax.swing.*;
@@ -34,15 +35,8 @@ public class Launcher
 		field = (Field) ui.playground;
 
 		Polyomino poly = field.spawnPolyomino();
-		/*Polyomino poly = new Polyomino(field);
-		poly.cells.add(new Cell(1, 1));
-		poly.cells.add(new Cell(1, 0));
-		poly.cells.add(new Cell(0, 1));
-		poly.cells.add(new Cell(0, 0));
 
-		field.addPolyomino(poly);
-
-		field.activePolyomino = poly;*/
+//		new SpawnPolyominoEvent(field).fire();
 
 		Timer timer = new Timer(1000/60, new ActionListener()
 		{

@@ -207,11 +207,42 @@ public class Polyomino
 		}
 	}
 
+	public void shift (int direction, int amount)
+	{
+		switch (direction)
+		{
+			case UP:
+				for (Cell cell : cells)
+				{
+					cell.logicalY -= amount;
+				}
+				break;
+			case DOWN:
+				for (Cell cell : cells)
+				{
+					cell.logicalY += amount;
+				}
+				break;
+			case LEFT:
+				for (Cell cell : cells)
+				{
+					cell.logicalX -= amount;
+				}
+				break;
+			case RIGHT:
+				for (Cell cell : cells)
+				{
+					cell.logicalX += amount;
+				}
+				break;
+		}
+	}
 
 	public              List<Cell> cells = new ArrayList<Cell>();
 	public static final int        DOWN  = 0;
 	public static final int        LEFT  = 1;
 	public static final int        RIGHT = 2;
+	public static final int        UP = 3;
 
 	public PolyominoFactory.Type type;
 	public int                   centerPiece;

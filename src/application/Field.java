@@ -6,6 +6,7 @@ import application.events.SlideEvent;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import javax.swing.*;
 
@@ -44,15 +45,27 @@ public class Field extends JPanel
 	{
 		super.paintComponent(g);
 
-		g.setColor(Color.green);
-		for (Cell cell : fallenCells)
+		try
 		{
-			cell.paintComponent(g);
-		}
+			g.setColor(Color.green);
+			synchronized (fallenCells)
+			{
+				for (Cell cell : fallenCells)
+				{
+					cell.paintComponent(g);
+				}
+			}
 
-		for (Cell cell : activePolyomino.cells)
+			synchronized (activePolyomino)
+			{
+				for (Cell cell : activePolyomino.cells)
+				{
+					cell.paintComponent(g);
+				}
+			}
+		} catch (Exception e)
 		{
-			cell.paintComponent(g);
+			System.out.println("Error");
 		}
 	}
 
@@ -121,6 +134,9 @@ public class Field extends JPanel
 
 		this.addPolyomino(poly);
 
+		poly.shift(Polyomino.UP, 2);
+		poly.shift(Polyomino.RIGHT, 4);
+
 		this.activePolyomino = poly;
 
 		return poly;
@@ -139,7 +155,7 @@ public class Field extends JPanel
 					break;
 				}
 			}
-			if (cell.logicalX < 0 || cell.logicalY < 0 ||
+			if (cell.logicalX < 0 ||
 					cell.logicalX >= this.width || cell.logicalY >= this.height)
 			{
 				returnValue = false;
@@ -153,7 +169,7 @@ public class Field extends JPanel
 	public int width  = 10;
 	private int height = 20;
 
-	public ArrayList<Cell> fallenCells  = new ArrayList<Cell>();
+	public LinkedHashSet<Cell> fallenCells  = new LinkedHashSet<Cell>();
 
 	public Polyomino  activePolyomino;
 	public SlideEvent slideEvent;

@@ -20,24 +20,27 @@ public class Cell extends JPanel
 
 		this.logicalX = x;
 		this.logicalY = y;
-		this.actualX = x;
-		this.actualY = y;
-		this.expectedActualX = x;
-		this.expectedActualY = y;
+		this.actualX = (30* 5) + 1;
+		this.actualY = (30* -3) + 1;
+		this.expectedActualX = (30* 5) + 1;
+		this.expectedActualY = (30* -3) + 1;
 	}
 
 
 	@Override
 	public void paintComponent(Graphics g)
 	{
-		expectedActualX = (30* logicalX) + 1;
-		expectedActualY = (30* logicalY) + 1;
+		if (logicalY > -1)
+		{
+			expectedActualX = (30* logicalX) + 1;
+			expectedActualY = (30* logicalY) + 1;
 
-		super.paintComponent(g);
-    		g.setColor(color);
-			g.fillRect((int) actualX, (int) actualY,28,28);
-		    g.drawRect((int) expectedActualX, (int) expectedActualY, 28,28);
-		this.adjustActualPosition();
+			super.paintComponent(g);
+			g.setColor(color);
+			g.fillRect((int) actualX, (int) actualY, 28, 28);
+			g.drawRect((int) expectedActualX, (int) expectedActualY, 28,28);
+			this.adjustActualPosition();
+		}
 	}
 
 

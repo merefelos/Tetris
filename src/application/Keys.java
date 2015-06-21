@@ -25,32 +25,35 @@ public class Keys extends KeyAdapter
 	{
 		super.keyPressed(e);
 
-		if (e.getKeyCode() == KeyEvent.VK_DOWN)
+		if (polyomino != null)
 		{
-			new MovePolyominoEvent(Polyomino.DOWN, polyomino).fire();
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-		{
-			new MovePolyominoEvent(Polyomino.LEFT, polyomino).fire();
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-		{
-			new MovePolyominoEvent(Polyomino.RIGHT, polyomino).fire();
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_UP)
-		{
-			if (polyomino.canRotate())
+			if (e.getKeyCode() == KeyEvent.VK_DOWN)
 			{
-				//polyomino.rotateRight();
-				new RotatePolyominoEvent(polyomino).fire();
+				new MovePolyominoEvent(Polyomino.DOWN, polyomino).fire();
 			}
-		}
-		else
-		{
-			System.out.println("!!!");
+			else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+			{
+				new MovePolyominoEvent(Polyomino.LEFT, polyomino).fire();
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+			{
+				new MovePolyominoEvent(Polyomino.RIGHT, polyomino).fire();
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_UP)
+			{
+				if (polyomino.canRotate())
+				{
+					//polyomino.rotateRight();
+					new RotatePolyominoEvent(polyomino).fire();
+				}
+			}
+			else
+			{
+				System.out.println("!!!");
+			}
 		}
 	}
 
 	public MyEvent   event;
-	public Polyomino polyomino;
+	public Polyomino polyomino = null;
 }
