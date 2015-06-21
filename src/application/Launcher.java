@@ -1,9 +1,7 @@
 package application;
 
 
-import application.events.RepaintFrameEvent;
 import application.events.SlideEvent;
-import application.events.SpawnPolyominoEvent;
 import events.EventControlPanel;
 
 import javax.swing.*;
@@ -52,7 +50,6 @@ public class Launcher
 
 		new EventControlPanel();
 
-//		EventControlPanel.registerRegularEvent(new RepaintFrameEvent(1000/16, field));
 		field.slideEvent = new SlideEvent(250, poly);
 		EventControlPanel.registerRegularEvent(field.slideEvent);
 
