@@ -20,6 +20,7 @@ public class MainUI
 	public JPanel playground;
 	public JPanel nextPanel;
 
+	public ScoreBoard scoreBoard;
 
 	private void createUIComponents()
 	{

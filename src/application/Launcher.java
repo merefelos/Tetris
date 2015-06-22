@@ -23,22 +23,27 @@ public class Launcher
 
 	private void run()
 	{
-		MainUI ui = new MainUI();
+		this.ui = new MainUI();
 		JFrame frame = new JFrame("TBT");
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setContentPane(ui.getRootPanel());
+		frame.setContentPane(this.ui.getRootPanel());
 		frame.setVisible(true);
 		frame.setSize(450, 800);
 
 		field = (Field) ui.playground;
 		nextPanel = (NextPanel) ui.nextPanel;
 		field.nextPanel = nextPanel;
+		ui.scoreBoard.field = field;
 
 		Polyomino poly = field.spawnPolyomino();
 
 //		new SpawnPolyominoEvent(field).fire();
 
 		nextPanel.setNextPolyomino(PolyominoFactory.produceRandomPolyomino(field));
+
+
+		//setting up scoreBoard
+		field.scoreBoard = ui.scoreBoard;
 
 		Timer timer = new Timer(1000/60, new ActionListener()
 		{
@@ -47,6 +52,7 @@ public class Launcher
 			{
 				field.repaint();
 				nextPanel.repaint();
+				ui.scoreBoard.main.repaint();
 			}
 		});
 
@@ -55,7 +61,7 @@ public class Launcher
 
 		new EventControlPanel();
 
-		field.slideEvent = new SlideEvent(250, poly);
+		field.slideEvent = new SlideEvent(1000, poly);
 		EventControlPanel.registerRegularEvent(field.slideEvent);
 
 		field.keys = new Keys(poly);
@@ -65,4 +71,5 @@ public class Launcher
 
 	Field field;
 	NextPanel nextPanel;
+	MainUI ui;
 }

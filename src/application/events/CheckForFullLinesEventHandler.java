@@ -26,6 +26,7 @@ public class CheckForFullLinesEventHandler implements EventHandler<CheckForFullL
 		Map<Integer, ArrayList<Cell>> map = new HashMap<Integer, ArrayList<Cell>>();
 		Map<Cell, Integer> moveMap = new HashMap<Cell, Integer>();
 
+		int clearedLineCounter = 0;
 
 //		synchronized (event.field)
 		{
@@ -46,6 +47,7 @@ public class CheckForFullLinesEventHandler implements EventHandler<CheckForFullL
 				if (currentLevel.size() >= event.field.width)
 				{
 					event.field.fallenCells.removeAll(currentLevel);
+					clearedLineCounter++;
 
 					for (Cell checkedCell : checkedCells)
 					{
@@ -72,6 +74,11 @@ public class CheckForFullLinesEventHandler implements EventHandler<CheckForFullL
 					cell.logicalY += moveMap.get(cell);
 				}
 			}
+		}
+
+		if (clearedLineCounter > 0)
+		{
+			new ScorePointsEvent(event.field, clearedLineCounter).fire();
 		}
 
 		new SpawnPolyominoEvent(event.field).fire();

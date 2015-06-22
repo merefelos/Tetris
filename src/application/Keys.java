@@ -3,10 +3,7 @@
 package application;
 
 
-import application.events.HardDropEvent;
-import application.events.MovePolyominoEvent;
-import application.events.MyEvent;
-import application.events.RotatePolyominoEvent;
+import application.events.*;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -50,6 +47,10 @@ public class Keys extends KeyAdapter
 			else if (e.getKeyCode() == KeyEvent.VK_SPACE)
 			{
 				new HardDropEvent(polyomino.ownerField).fire();
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_Q)
+			{
+				new LevelUpEvent(polyomino.ownerField).fire();
 			}
 		}
 	}

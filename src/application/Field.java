@@ -3,6 +3,7 @@ package application;
 
 import application.events.PolyominoDroppedEvent;
 import application.events.SlideEvent;
+import events.EventControlPanel;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -168,6 +169,19 @@ public class Field extends JPanel
 		return returnValue;
 	}
 
+	public void increaseSpeed()
+	{
+		EventControlPanel.unRegisterRegularEvent(this.slideEvent);
+
+		this.speed  = (this.speed * 4) / 5;
+
+		synchronized (this.slideEvent)
+		{
+			this.slideEvent = new SlideEvent(this.speed, activePolyomino);
+		}
+
+		EventControlPanel.registerRegularEvent(this.slideEvent);
+	}
 
 	public int width = 10;
 	private int height = 20;
@@ -179,4 +193,10 @@ public class Field extends JPanel
 	public Keys keys;
 
 	public NextPanel nextPanel;
+
+	public ScoreBoard scoreBoard;
+
+	public int level = 0;
+
+	public long speed = 1000;
 }

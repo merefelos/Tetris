@@ -61,8 +61,8 @@ public class Cell extends JPanel
 		{
 			yi = yDiff;
 		}
-//		xDiff /= Math.abs(xDiff);
-//		yDiff /= Math.abs(yDiff);
+//		xDiff /= 20;
+//		yDiff /= 20;
 
 		if (xDiff < 0)
 		{
