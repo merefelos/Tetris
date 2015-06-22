@@ -8,6 +8,7 @@
     <properties>
       <maximumSize width="120" height="200"/>
       <minimumSize width="120" height="200"/>
+      <opaque value="false"/>
       <preferredSize width="120" height="200"/>
     </properties>
     <border type="none"/>
