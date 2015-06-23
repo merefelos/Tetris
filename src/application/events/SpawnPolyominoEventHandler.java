@@ -36,5 +36,6 @@ public class SpawnPolyominoEventHandler implements EventHandler<SpawnPolyominoEv
 
 		Event.enable(MovePolyominoEvent.class);
 		Event.enable(SlideEvent.class);
+		Event.enable(PolyominoDroppedEvent.class);
 	}
 }

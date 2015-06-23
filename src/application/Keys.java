@@ -5,7 +5,6 @@ package application;
 
 import application.events.*;
 
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -48,13 +47,23 @@ public class Keys extends KeyAdapter
 			{
 				new HardDropEvent(polyomino.ownerField).fire();
 			}
-			else if (e.getKeyCode() == KeyEvent.VK_Q)
+			else if (e.getKeyCode() == KeyEvent.VK_P)
 			{
-				new LevelUpEvent(polyomino.ownerField).fire();
+				if (this.paused)
+				{
+					new ResumeEvent().fire();
+					this.paused = false;
+				}
+				else
+				{
+					new PauseEvent().fire();
+					this.paused = true;
+				}
 			}
 		}
 	}
 
 	public MyEvent   event;
 	public Polyomino polyomino = null;
+	private boolean paused = false;
 }

@@ -20,6 +20,7 @@ public class CheckForFullLinesEventHandler implements EventHandler<CheckForFullL
 	{
 		Event.disable(SlideEvent.class);
 		Event.disable(MovePolyominoEvent.class);
+		Event.disable(PolyominoDroppedEvent.class);
 
 		ArrayList<Cell> checkedCells = new ArrayList<Cell>();
 
