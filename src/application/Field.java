@@ -169,11 +169,12 @@ public class Field extends JPanel
 		return returnValue;
 	}
 
+
 	public void increaseSpeed()
 	{
 		EventControlPanel.unRegisterRegularEvent(this.slideEvent);
 
-		this.speed  = (this.speed * 4) / 5;
+		this.speed = (this.speed * 4) / 5;
 
 		synchronized (this.slideEvent)
 		{
@@ -182,6 +183,7 @@ public class Field extends JPanel
 
 		EventControlPanel.registerRegularEvent(this.slideEvent);
 	}
+
 
 	public int width = 10;
 	private int height = 20;

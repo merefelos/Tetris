@@ -60,6 +60,10 @@ public class Keys extends KeyAdapter
 					this.paused = true;
 				}
 			}
+			else if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+			{
+				new GameOverEvent(polyomino.ownerField, polyomino.ownerField.scoreBoard.statistics.score).fire();
+			}
 		}
 	}
 
