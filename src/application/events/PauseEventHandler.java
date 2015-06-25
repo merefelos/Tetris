@@ -16,5 +16,7 @@ public class PauseEventHandler implements EventHandler<PauseEvent>
 		Event.disable(RotatePolyominoEvent.class);
 		Event.disable(MovePolyominoEvent.class);
 		Event.disable(HardDropEvent.class);
+		Event.disable(PolyominoDroppedEvent.class);
+		Event.disable(SpawnPolyominoEvent.class);
 	}
 }

@@ -18,5 +18,7 @@ public class ResumeEventHandler implements EventHandler<ResumeEvent>
 		Event.enable(RotatePolyominoEvent.class);
 		Event.enable(MovePolyominoEvent.class);
 		Event.enable(HardDropEvent.class);
+		Event.enable(PolyominoDroppedEvent.class);
+		Event.enable(SpawnPolyominoEvent.class);
 	}
 }

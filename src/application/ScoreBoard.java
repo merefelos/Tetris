@@ -28,7 +28,7 @@ public class ScoreBoard
 		this.scoreLabel.setText("" + statistics.score);
 		this.levelLabel.setText("" + field.level);
 
-		if (statistics.levelUpCounter > 25)
+		if (statistics.levelUpCounter > 5)
 		{
 			new LevelUpEvent(field).fire();
 			statistics.levelUpCounter = 0;

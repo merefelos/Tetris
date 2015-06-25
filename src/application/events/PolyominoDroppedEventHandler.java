@@ -1,6 +1,6 @@
 package application.events;
 
-import application.Polyomino;
+import application.Cell;
 import events.EventHandler;
 
 
@@ -13,6 +13,22 @@ public class PolyominoDroppedEventHandler implements EventHandler<PolyominoDropp
 	public void handleEvent(PolyominoDroppedEvent event)
 	{
 		event.field.keys.polyomino = null;
+
+		boolean gameOver = false;
+
+		for (Cell cell : event.field.activePolyomino.cells)
+		{
+			if (cell.logicalY < 0)
+			{
+				gameOver = true;
+			}
+		}
+
+		if (gameOver)
+		{
+			new PauseEvent().fire();
+			new GameOverEvent(event.field, event.field.scoreBoard.statistics.score).fire();
+		}
 		event.field.fallenCells.addAll(event.field.activePolyomino.cells);
 
 		new CheckForFullLinesEvent(event.field).fire();

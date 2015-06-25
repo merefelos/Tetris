@@ -36,7 +36,7 @@ public class Statistics
 	int oneLiners = 0;
 	int linesCleared = 0;
 
-	int score = 0;
+	public int score = 0;
 
 	public int levelUpCounter;
 }
